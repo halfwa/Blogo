@@ -1,0 +1,53 @@
+﻿@model Blogoblog.DAL.Models.EditArticleViewModel
+
+@{
+    ViewData["Title"] = "Редактирование статьи";
+}
+
+<div class="col-md-4 offset-md-4">
+    <form class="frm" method="post" asp-controller="Articles" asp-action="ConfirmUpdating">
+
+        <input type="hidden" asp-for="Id" />
+
+        <h3>Редактирование статьи</h3>
+        <hr>
+
+        <div class="form-group" style="margin-top:10%">
+            <label>Заголовок</label>
+            <input asp-for="Title" class="form-control" required minlength="3">
+        </div>
+
+        <div class="form-group" style="margin-top:10%">
+            <label>Контент</label>
+            <textarea rows="10" asp-for="Content" class="form-control" required minlength="3"></textarea>
+        </div>
+
+        <div class="form-group" style="margin-top:3%">
+
+            @if (Model.Tags.Count != 0)
+            {
+                @foreach (var tag in Model.Tags)
+                {
+                    @if (Model.TagsSelected.Contains(tag))
+                    {
+                        <input class="form-check-input" type="checkbox" name="SelectedTags" value="@tag.Id" checked>
+                        <label class="form-check-label" style="padding-right:3%">@tag.Content</label>
+                    }
+                    else
+                    {
+                        <input class="form-check-input" type="checkbox" name="SelectedTags" value="@tag.Id">
+                        <label class="form-check-label" style="padding-right:3%">@tag.Content</label>
+                    }
+                }
+            }
+
+        </div>
+
+        <div class="form-group" style="margin-top:5%">
+            <button type="submit" class="btn btn-success">Сохранить изменения</button>
+        </div>
+
+        <p style="margin-top:5%"><a class="text-blue" asp-area="" asp-controller="Articles" asp-action="Index">Не сохранять и вернуться</a></p>
+
+    </form>
+</div>

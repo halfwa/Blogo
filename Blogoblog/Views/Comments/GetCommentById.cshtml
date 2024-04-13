@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Просмотр комментария";
+}
+
+<div clamarging background-white">
+    <div class="blog-main">
+        <h6 class="blog-post-title">@Model.Text</h6><br>
+        <p class="text-muted" style="margin-top:60px; margin-left: 10px">Id статьи @Model.Article_Id</p>
+        <p class="text-muted" style="margin-top:60px; margin-left: 10px">Id автора @Model.User_Id</p>
+        <form method="get" asp-controller="Comments" asp-action="Update" asp-route-id="@Model.Id" style="display:inline-block">
+            <input class="enter_submit" type="submit" value="Редактировать" style="color:green" />
+        </form>
+        <form method="post" asp-controller="Comments" asp-action="Delete" asp-route-id="@Model.IdD" style="display:inline-block">
+            <input class="enter_submit" type="submit" value="Удалить" style="color:red" />
+        </form>
+    </div>
+</div>

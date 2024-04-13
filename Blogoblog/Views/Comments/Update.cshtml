@@ -1,0 +1,21 @@
+﻿@model Blogoblog.DAL.Models.Comment
+
+@{
+    ViewData["Title"] = "Редактирование комментария";
+}
+
+<form class="frm" method="post" asp-controller="Comments" asp-action="ConfirmUpdating">    
+    
+    <h3>Редактирование комментария</h3>
+    <hr>
+    
+    <div class="form-floating">
+        <label for="floatingInput">Текст</label>
+        <input required asp-for="Content" class="form-control" id="floatingInput">
+    </div>
+
+    <div class="form-group" style="margin-top:5%">
+        <button type="submit" class="btn btn-success">Сохранить</button>
+    </div>
+
+</form>

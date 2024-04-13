@@ -1,0 +1,41 @@
+﻿@model Blogoblog.DAL.Models.AddArticleViewModel
+
+@{
+    ViewData["Title"] = "Новая статья";
+}
+
+<div class="col-md-4 offset-md-4">
+    <form class="frm" method="post" asp-controller="Articles" asp-action="AddArticle">        
+
+        <h3>Добавление статьи</h3>
+        <hr>
+
+        <div class="form-group" style="margin-top:10%">
+            <label>Заголовок</label>
+            <input asp-for="Title" class="form-control" placeholder="Четко и емко" required minlength="3">
+        </div>
+
+        <div class="form-group" style="margin-top:10%">
+            <label>Контент</label>
+            <textarea rows="10" asp-for="Content" class="form-control" placeholder="Муки творчества знакомы каждому автору" required minlength="3"></textarea>
+        </div>
+
+        <div class="form-group" style="margin-top:3%">
+            @if (Model.Tags.Count != 0)
+            {
+                @foreach (var tag in Model.Tags)
+                {
+                    <input class="form-check-input" type="checkbox" name="SelectedTags" value="@tag.Id">
+                    <label class="form-check-label" style="padding-right:3%">@tag.Content</label>
+                }
+            }
+        </div>
+
+        <div class="form-group" style="margin-top:5%">
+            <button type="submit" class="btn btn-success">Добавить</button>
+        </div>
+
+        <p style="margin-top:5%"><a class="text-blue" asp-area="" asp-controller="Articles" asp-action="Index">Перейти к списку всех статей</a></p>
+
+    </form>
+</div>

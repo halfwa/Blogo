@@ -1,0 +1,28 @@
+﻿﻿@{
+    ViewData["Title"] = "Просмотр ролей";
+}
+
+<div class="col-md-12">
+
+    <div class="center">
+        <h3 class="center">Все роли</h3>
+        <a class="text-blue" asp-area="" asp-controller="Roles" asp-action="AddRole">Добавить роль</a>
+    </div>
+
+    @foreach (var role in Model)
+    {
+        <div class="card" style="display:inline-block; margin:1%">
+            <div class="card-body">
+                <h5 class="card-title" style="color:darkgoldenrod">@role.Role_Name</h5>
+                <p class="text-muted" style="margin-top:1%">@role.Role_Description</p>
+
+                @if (User.IsInRole("3"))
+                {
+                    <div style="display:inline-block">
+                        <button class="btn btn-primary btn-sm" onclick="window.location.href='@Url.Action("Update", "Roles", new { id = role.Id })'">Редактировать</button>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>

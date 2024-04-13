@@ -1,0 +1,35 @@
+﻿@model Blogoblog.DAL.Models.User
+
+@{
+    ViewData["Title"] = "Вход";
+}
+
+<div class="col-md-4 offset-md-4">
+    <form class="frm" method="post" asp-controller="Users" asp-action="Authenticate">
+
+        <div asp-validation-summary="ModelOnly"></div>
+
+        <div class="form-group" style="margin-top:30%">
+            <label for="floatingLogin">Логин</label>
+            <input asp-for="Email" class="form-control" id="floatingLogin" aria-describedby="emailHelp" placeholder="электронная почта" required>
+            <span asp-validation-for="Email" class="text-danger"></span>
+            <small id="emailHelp" class="form-text text-muted">Мы никогда не делимся вашим email с кем бы то ни было</small>
+        </div>
+
+        <div class="form-group" style="margin-top:5%">
+            <label for="floatingPassword">Пароль</label>
+            <input asp-for="Password" class="form-control" id="floatingPassword" placeholder="знаете только вы" required>
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <div class="form-check" style="margin-top:5%">
+            <input type="checkbox" class="form-check-input" id="remember-me">
+            <label class="form-check-label" for="remember-me">Запомнить меня</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Войти</button>
+
+        <p display="inline" style="margin-top:5%">Еще нет аккаунта? <a class="text-blue" asp-area="" asp-controller="Users" asp-action="Register">Зарегистрируйтесь!</a></p>
+
+    </form>
+</div>

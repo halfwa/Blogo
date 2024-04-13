@@ -1,0 +1,34 @@
+﻿@model Blogoblog.DAL.Models.Tag
+
+@{
+    ViewData["Title"] = "Добавление тега";
+}
+
+<div class="col-md-4 offset-md-4">
+    @if (Model == null)
+    {
+        <form class="frm" method="post" asp-controller="Tags" asp-action="AddTag">
+
+            <div asp-validation-summary="ModelOnly"></div>
+
+            <h3>Добавление тега</h3>
+            <hr>
+
+            <div class="form-floating" style="margin-top:10%">
+                <input asp-for="Content" class="form-control" id="floatingTag" placeholder="тэг" required minlength="3">
+                <label for="floatingTag">название</label>
+            </div>
+
+            <div class="form-group" style="margin-top:5%">
+                <button type="submit" class="btn btn-success">Добавить</button>
+            </div>
+
+            <p style ="margin-top:5%"><a class="text-blue" asp-area="" asp-controller="Tags" asp-action="Index">Перейти к списку всех тегов</a></p>
+
+        </form>
+    }
+    else
+    {
+        @await Html.PartialAsync("_TagAdded")
+    }
+</div>
