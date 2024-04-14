@@ -33,7 +33,7 @@ namespace Blogoblog.Controllers
         public async Task<IActionResult> GetCommentById(int id)
         {
             var comment = await _repo.Get(id);
-            _logger.LogInformation("CommentsController - GetArticleById");
+            _logger.LogInformation("CommentsController - GetCommentById");
             return View(comment);
         }
 

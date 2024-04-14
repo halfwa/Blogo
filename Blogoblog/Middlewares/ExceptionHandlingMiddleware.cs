@@ -22,7 +22,7 @@
             catch (Exception ex)
             {
                 _logger.LogError(ex.Message);
-                httpContext.Response.Redirect("/Home/Error");
+                httpContext.Response.Redirect("SomethingWentWrong.html");
             }
         }
     }

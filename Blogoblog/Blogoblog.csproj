@@ -13,6 +13,7 @@
   <ItemGroup>
     <PackageReference Include="bootstrap" Version="5.3.3" />
     <PackageReference Include="NLog" Version="5.2.8" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="5.3.8" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.2" />
   </ItemGroup>
 
@@ -20,6 +21,12 @@
     <Folder Include="DAL\UoW\" />
     <Folder Include="Middlewares\" />
     <Folder Include="Extentions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\AccessDenied.html" />
+    <None Include="wwwroot\NotFound.html" />
+    <None Include="wwwroot\SomethingWentWrong.html" />
   </ItemGroup>
 
 </Project>

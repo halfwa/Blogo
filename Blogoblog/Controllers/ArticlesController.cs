@@ -67,7 +67,7 @@ namespace Blogoblog.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetArticleById(int id)
+        public async Task<IActionResult> ViewArticle(int id)
         {
             var article = await _articleRepo.Get(id);
             _logger.LogInformation("ArticlesController - GetArticleById");
