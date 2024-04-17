@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Blogoblog.DAL.Models;
 using Blogoblog.DAL.Repositories;
 
-namespace Blogoblog.Controllers
+namespace API.Controllers
 {
-    [Authorize]
+    [ApiController]
+    [Route("[controller]")]
     public class RolesController : Controller
     {
         private readonly IRepository<Role> _repo;
@@ -17,7 +18,7 @@ namespace Blogoblog.Controllers
             _logger = logger;
             _logger.LogDebug(1, "NLog подключен к RolesController");
         }
-        [HttpGet]
+        [HttpGet("{index}")]
         public async Task<IActionResult> Index()
         {
             var roles = await _repo.GetAll();
@@ -31,20 +32,20 @@ namespace Blogoblog.Controllers
             _logger.LogInformation("RolesController - GetRoleById");
             return View(role);
         }
-        [HttpGet]
+        [HttpGet("{getbyid}")]
         public IActionResult AddRole()
         {
             _logger.LogInformation("RolesController - Add");
             return View();
         }
-        [HttpPost]
+        [HttpPost("{addrole}")]
         public async Task<IActionResult> AddRole(Role newRole)
         {
             await _repo.Add(newRole);
             _logger.LogInformation("RolesController - Add - complete");
             return View(newRole);
         }
-        [HttpPost]
+        [HttpPost("{del}")]
         public async Task<IActionResult> Delete(int id)
         {
             var role = await _repo.Get(id);
@@ -53,7 +54,7 @@ namespace Blogoblog.Controllers
             return RedirectToAction("Index", "Roles");
         }
 
-        [HttpGet]
+        [HttpGet("{upd}")]
         public async Task<IActionResult> Update(int id)
         {
             var role = await _repo.Get(id);
@@ -61,7 +62,7 @@ namespace Blogoblog.Controllers
             return View(role);
         }
 
-        [HttpPost]
+        [HttpPost("{updok}")]
         public async Task<IActionResult> ConfirmUpdating(Role role)
         {
             await _repo.Update(role);

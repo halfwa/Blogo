@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace BlogPLL.Controllers;
+namespace Blogoblog.Controllers;
 
 public class ErrorsController : Controller
 {    

@@ -17,5 +17,7 @@ namespace Blogoblog.DAL.Models
         public string? Content { get; set; }
 
         public IList<Tag>? Tags { get; set; }
+
+        public List<int>? SelectedTags { get; set; }
     }
 }

@@ -5,9 +5,10 @@ using Blogoblog.DAL.Repositories;
 using System.Collections.Generic;
 
 
-namespace Blogoblog.Controllers
+namespace API.Controllers
 {
-    [Authorize]
+    [ApiController]
+    [Route("[controller]")]
     public class ArticlesController : Controller
     {
         private readonly IArticleRepository _articleRepo;
@@ -24,7 +25,7 @@ namespace Blogoblog.Controllers
             _logger.LogDebug(1, "NLog подключен к ArtController");
         }
 
-        [HttpGet]
+        [HttpGet("{index}")]
         public async Task<IActionResult> Index()
         {
             var articles = await _articleRepo.GetAll();
@@ -32,7 +33,7 @@ namespace Blogoblog.Controllers
             return View(articles);
         }
 
-        [HttpGet]
+        [HttpGet("{getarticle}")]
         public async Task<IActionResult> AddArticle()
         {
             var tags = await _tagRepo.GetAll();
@@ -40,7 +41,7 @@ namespace Blogoblog.Controllers
             return View(new AddArticleViewModel() { Tags = tags.ToList() });            
         }
 
-        [HttpPost]
+        [HttpPost("{addarticle}")]
         public async Task<IActionResult> AddArticle(AddArticleViewModel model)
         {
             // Получаем логин текущего пользователя из контекста сессии
@@ -66,7 +67,7 @@ namespace Blogoblog.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
+        [HttpGet("{viewarticle}")]
         public async Task<IActionResult> ViewArticle(int id)
         {
             var article = await _articleRepo.Get(id);
@@ -74,14 +75,14 @@ namespace Blogoblog.Controllers
             return View(article);
         }
 
-        [HttpGet]
+        [HttpGet("{getarticletodel}")]
         public IActionResult Delete()
         {
             _logger.LogInformation("ArticlesController - Delete");
             return View();
         }
 
-        [HttpPost]
+        [HttpPost("{deletearticle}")]
         public async Task<IActionResult> Delete(int id)
         {
             var article = await _articleRepo.Get(id);
@@ -90,7 +91,7 @@ namespace Blogoblog.Controllers
             return RedirectToAction("Index", "Articles");
         }
 
-        [HttpGet]
+        [HttpGet("{upd}")]
         public async Task<IActionResult> Update(int id)
         {
             var article = await _articleRepo.Get(id);
